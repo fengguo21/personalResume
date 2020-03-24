@@ -12,6 +12,7 @@
                 <dt><i class="fa fa-bookmark"></i>Basic info. 基本信息</dt>
                 <dd><span>个人信息:</span> {{ name }} / {{ gender }} / {{ age }} / {{ grade }}</dd>
                 <dd><span>学校：</span>{{school}}</dd>
+                <dd><span>专业：</span>{{profession}}</dd>
                 {% if english_level %}
                 <dd><span>英语水平:</span> {{ english_level }}</dd>
                 {% endif %}
@@ -50,6 +51,17 @@
                 </dd>
             </li>
             {% endif %}
+<!--            <li class="skill">-->
+<!--                <dt><i class="fa fa-bookmark"></i>Tech. 主要技能点</dt>-->
+<!--                {% for item in tech %}-->
+<!--                <dd>-->
+<!--                    <div class="skill-name">{{ item.name }}</div>-->
+<!--                    <div class="skill-bar-wrap">-->
+<!--                        <div class="skill-bar" style="width: {{ item.percentage }}"></div>-->
+<!--                    </div>-->
+<!--                </dd>-->
+<!--                {% endfor %}-->
+<!--            </li>-->
         </ul>
         {% if intro %}
         <div class="note">
@@ -59,6 +71,14 @@
     </div>
     <div class="main">
         <ul class="main-info">
+            <li class="skill">
+                <dt><i class="fa fa-bookmark"></i>Skill. 技能清单</dt>
+                {% for item in skill %}
+                <ul class="exp">
+                  <li>{{ item.des |safe }}</li>
+                </ul>
+                {% endfor %}
+            </li>
             <li class="experience">
                 <dt><i class="fa fa-bookmark"></i>Experience. 项目经验</dt>
                 {% for exp in experience %}
@@ -84,6 +104,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
+                        <h2 class="exp-title">{{exp.section}}</h2>
                         <ul class="exp">
                             {% for item in exp.exper %}
                             <li>
@@ -102,9 +123,7 @@
                                             {% endif %}
                                             </h4>
                                             <div class="clearfix">
-                                              {% if sub_item.img %}
-                                                <img src="{{ sub_item.img }}">
-                                                {% endif %}
+                                              {% if sub_item.img %}<img src="{{ sub_item.img }}">{% endif %}
                                               {{ sub_item.des |safe }}
                                             </div>
                                         </li>
